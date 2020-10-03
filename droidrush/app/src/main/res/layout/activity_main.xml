@@ -12,10 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/cormorant_garamond_semibold_italic"
         android:text="@string/tys_grocery"
         android:textColor="#03A9F4"
         android:textColorLink="#C61A1A"
         android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -53,17 +55,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12sp"
             android:text="Sign Up" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login In" />
+            android:text="Log In" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

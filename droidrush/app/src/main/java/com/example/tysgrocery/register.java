@@ -3,6 +3,7 @@ package com.example.tysgrocery;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -76,9 +77,11 @@ public class register extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(register.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
                 }
                 else {
-                    Toast.makeText(register.this, "Registration failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(register.this, "Registration failed"+task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -47,10 +47,11 @@ public class Profile extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                phone.setText(documentSnapshot.getString("Phone No."));
                 name.setText(documentSnapshot.getString("Name"));
+                phone.setText(documentSnapshot.getString("Password"));
                 usrname.setText(documentSnapshot.getString("User Name"));
                 email.setText(documentSnapshot.getString("Email Id"));
+
             }
         });
 

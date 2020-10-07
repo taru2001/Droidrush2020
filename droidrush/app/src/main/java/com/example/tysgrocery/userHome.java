@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +15,7 @@ public class userHome extends AppCompatActivity {
 
     private Button logout;
     private Button profile;
+    ImageButton bev,dairy,bakery,fruits;
 
 
     @Override
@@ -23,6 +25,10 @@ public class userHome extends AppCompatActivity {
 
         logout = findViewById(R.id.logout);
         profile = findViewById(R.id.profile);
+        bev = findViewById(R.id.Beverage);
+        dairy = findViewById(R.id.dairy);
+        bakery = findViewById(R.id.bakery);
+        fruits = findViewById(R.id.fruits);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,5 +49,38 @@ public class userHome extends AppCompatActivity {
                 finish();
             }
         });
+
+        bev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(userHome.this, "Beverages", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dairy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(userHome.this, "Dairy Products", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bakery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(userHome.this, "Bakery", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        fruits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(userHome.this, "Fruits & Vegetables", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
     }
 }

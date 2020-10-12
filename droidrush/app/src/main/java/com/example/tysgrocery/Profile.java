@@ -33,7 +33,7 @@ public class Profile extends AppCompatActivity {
 
         name = findViewById(R.id.name);
         usrname = findViewById(R.id.user_name);
-        phone = findViewById(R.id.phone);
+        phone = findViewById(R.id.price);
         email = findViewById(R.id.email);
         logout = findViewById(R.id.logout);
 

@@ -23,48 +23,111 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-    <ImageButton
-        android:id="@+id/Beverage"
-        android:layout_width="152dp"
-        android:layout_height="121dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="132dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bevjuice" />
-
-    <ImageButton
-        android:id="@+id/dairy"
-        android:layout_width="169dp"
-        android:layout_height="118dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+    <ScrollView
+        android:layout_width="372dp"
+        android:layout_height="608dp"
+        android:layout_marginTop="250sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Beverage"
-        app:srcCompat="@drawable/dairy" />
-
-    <ImageButton
-        android:id="@+id/bakery"
-        android:layout_width="137dp"
-        android:layout_height="142dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Beverage"
-        app:srcCompat="@drawable/bakery" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/fruits"
-        android:layout_width="166dp"
-        android:layout_height="133dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bakery"
-        app:srcCompat="@drawable/fruits" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Beverage and Juice"
+                android:layout_marginLeft="75sp"
+                android:textColor="#DA0E53"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/Beverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50sp"
+                app:srcCompat="@drawable/bevjuice" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75sp"
+                android:textColor="#DA0E53"
+                android:textSize="24sp"
+                android:text="Dairy Products" />
+
+            <ImageButton
+                android:id="@+id/dairy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50sp"
+                app:srcCompat="@drawable/dairy" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75sp"
+                android:textColor="#DA0E53"
+                android:textSize="24sp"
+                android:text="Bakery Products" />
+
+            <ImageButton
+                android:id="@+id/bakery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50sp"
+                app:srcCompat="@drawable/bakery" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75sp"
+                android:textColor="#DA0E53"
+                android:textSize="24sp"
+                android:text="Fruits and Vegetables" />
+
+            <ImageButton
+                android:id="@+id/fruits"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50sp"
+                app:srcCompat="@drawable/fruits" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75sp"
+                android:textColor="#DA0E53"
+                android:textSize="24sp"
+                android:text="Cleaning Products" />
+
+            <ImageButton
+                android:id="@+id/cleaners"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50sp"
+                app:srcCompat="@drawable/cleaners" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/logout"
+        app:layout_constraintStart_toEndOf="@+id/profile"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

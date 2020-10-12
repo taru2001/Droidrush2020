@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        app:layout_constraintTop_toBottomOf="@+id/price" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
     <TextView
-        android:id="@+id/phone"
+        android:id="@+id/price"
         android:layout_width="269dp"
         android:layout_height="28dp"
         android:layout_marginTop="28dp"

@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -44,7 +42,7 @@ public class register extends AppCompatActivity {
 
         name = findViewById(R.id.name);
         user_name = findViewById(R.id.usr_name);
-        phone = findViewById(R.id.phone);
+        phone = findViewById(R.id.price);
         email = findViewById(R.id.regemail);
         password = findViewById(R.id.regpassword);
         confirm_password = findViewById(R.id.regcpassword);

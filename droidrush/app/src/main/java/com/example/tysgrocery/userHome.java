@@ -15,6 +15,7 @@ public class userHome extends AppCompatActivity {
 
     private Button logout;
     private Button profile;
+    Button button;
     ImageButton bev,dairy,bakery,fruits;
 
 
@@ -29,6 +30,7 @@ public class userHome extends AppCompatActivity {
         dairy = findViewById(R.id.dairy);
         bakery = findViewById(R.id.bakery);
         fruits = findViewById(R.id.fruits);
+        button = findViewById(R.id.button);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +48,14 @@ public class userHome extends AppCompatActivity {
                 Toast.makeText(userHome.this, "Profile", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(userHome.this,Profile.class));
                 startActivity(new Intent(getApplicationContext(),Profile.class));
+                finish();
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity((new Intent(userHome.this, Upload.class)));
                 finish();
             }
         });

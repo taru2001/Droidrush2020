@@ -42,7 +42,6 @@ public class Beverages extends AppCompatActivity {
         final Intent intent = new Intent(this,Upload.class);
         String message = "beverages";
         intent.putExtra(MSG,message);
-
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

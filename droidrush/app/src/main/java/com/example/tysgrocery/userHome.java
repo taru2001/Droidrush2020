@@ -64,6 +64,8 @@ public class userHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(userHome.this, "Beverages", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),Beverages.class));
+                finish();
             }
         });
 

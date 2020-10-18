@@ -73,6 +73,8 @@ public class userHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(userHome.this, "Dairy Products", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),Dairy.class));
+                finish();
             }
         });
 

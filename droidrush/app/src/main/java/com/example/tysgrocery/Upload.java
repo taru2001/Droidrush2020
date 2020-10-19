@@ -75,15 +75,13 @@ public class Upload extends AppCompatActivity {
 
 
     }
-    public void uploadproduct(final String product,final String quantity,final String price, final String desc,
+    public void uploadproduct(final String product,final String quantity,final String price, final String desc, String msg, String message ){
 
-                              String msg, String message ){
-        try {
 
             if (msg.equals("dairy")) {
                 UserId = auth.getCurrentUser().getUid();
 
-                DocumentReference documentReference = fstore.collection("Dairy").document(product).collection("Product No.").document(product);
+                DocumentReference documentReference = fstore.collection("Categories").document(msg).collection(UserId).document(product);
                 Map<String, Object> dairy = new HashMap<>();
 //                    beverage.put("Product Number", txt_product_number);
                 dairy.put("Product Name", product);
@@ -99,9 +97,14 @@ public class Upload extends AppCompatActivity {
                 Toast.makeText(Upload.this, "Product Uploaded", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), userHome.class));
                 finish();
-            } else if (message.equals("beverages")) {
+            }
+//            else{
+//                Log.d("TAG", "Product is added " );
+//            }
+
+            else if (message.equals("beverages")) {
                 UserId = auth.getCurrentUser().getUid();
-                DocumentReference documentReference = fstore.collection("Beverages").document(product).collection("Product No.").document(product);
+                DocumentReference documentReference = fstore.collection("Categories").document(message).collection(UserId).document(product);
                 Map<String, Object> beverage = new HashMap<>();
 //                    beverage.put("Product Number", txt_product_number);
                 beverage.put("Product Name", product);
@@ -121,10 +124,7 @@ public class Upload extends AppCompatActivity {
             else{
                 Log.d("TAG", "are chl jaa");
             }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+
 
     }
 }

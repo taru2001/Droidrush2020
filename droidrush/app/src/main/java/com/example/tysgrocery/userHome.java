@@ -15,8 +15,7 @@ public class userHome extends AppCompatActivity {
 
     private Button logout;
     private Button profile;
-    Button button;
-    ImageButton bev,dairy,bakery,fruits;
+    ImageButton bev,dairy,bakery,fruits,cleaners,dry;
 
 
     @Override
@@ -30,7 +29,8 @@ public class userHome extends AppCompatActivity {
         dairy = findViewById(R.id.dairy);
         bakery = findViewById(R.id.bakery);
         fruits = findViewById(R.id.fruits);
-        button = findViewById(R.id.button);
+        cleaners=findViewById(R.id.cleaners);
+        dry = findViewById(R.id.dry);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,14 +48,6 @@ public class userHome extends AppCompatActivity {
                 Toast.makeText(userHome.this, "Profile", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(userHome.this,Profile.class));
                 startActivity(new Intent(getApplicationContext(),Profile.class));
-                finish();
-            }
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity((new Intent(userHome.this, Upload.class)));
                 finish();
             }
         });
@@ -82,6 +74,8 @@ public class userHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(userHome.this, "Bakery", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),Bakery.class));
+                finish();
             }
         });
 
@@ -89,10 +83,28 @@ public class userHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(userHome.this, "Fruits & Vegetables", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),FandV.class));
+                finish();
             }
         });
 
+        cleaners.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(userHome.this, "Cleaners", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),Cleaners.class));
+                finish();
+            }
+        });
 
+        dry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(userHome.this, "Dry Products", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),dry.class));
+                finish();
+            }
+        });
 
 
 

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Dairy"></activity>
+        <activity android:name=".dry"></activity>
+        <activity android:name=".Cleaners" />
+        <activity android:name=".FandV" />
+        <activity android:name=".Bakery" />
+        <activity android:name=".Dairy" />
         <activity android:name=".Beverages" />
         <activity android:name=".Upload" />
         <activity android:name=".Profile" />

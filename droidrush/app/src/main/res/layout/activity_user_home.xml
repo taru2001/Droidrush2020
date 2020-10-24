@@ -117,17 +117,31 @@
                 android:layout_marginLeft="50sp"
                 app:srcCompat="@drawable/cleaners" />
 
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80sp"
+                android:text="Dry Products"
+                android:textColor="#DA0E53"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/dry"
+                android:layout_width="250dp"
+                android:layout_height="220dp"
+                android:layout_marginLeft="50sp"
+                app:srcCompat="@drawable/dry4" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="match_parent"
+                android:layout_height="116dp"
+                android:layout_marginTop="25sp"
+                app:srcCompat="@drawable/dry4" />
+
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/logout"
-        app:layout_constraintStart_toEndOf="@+id/profile"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

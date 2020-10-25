@@ -1,39 +1,34 @@
 package com.example.tysgrocery;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
-
-import javax.annotation.Nullable;
-
-public class Dairy extends AppCompatActivity {
+public class Dairy extends AppCompatActivity implements FirestoreAdapter.OnListItemClick {
 
     public static final String MSGS = "com.example.tysgrocery.DAIRY";
 
-    Button logout,upload;
+    Button logout, upload;
     FirebaseFirestore fstore;
     FirebaseAuth auth;
     String UserId;
-    ListView dairylist;
-//    String [] product;
-    String x;
-    ArrayList<String> products;
+    RecyclerView product_list;
+    FirestoreAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +36,7 @@ public class Dairy extends AppCompatActivity {
 
         logout = findViewById(R.id.logout);
         upload = findViewById(R.id.upload);
+        product_list = findViewById(R.id.product);
 
         fstore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -50,7 +46,7 @@ public class Dairy extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(Dairy.this, "Logged Out!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Dairy.this,MainActivity.class));
+                startActivity(new Intent(Dairy.this, MainActivity.class));
                 finish();
             }
         });
@@ -58,57 +54,61 @@ public class Dairy extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dairy.this,Upload.class);
+                Intent intent = new Intent(Dairy.this, Upload.class);
                 String message = "dairy";
-                intent.putExtra(MSGS,message);
+                intent.putExtra(MSGS, message);
                 startActivity(intent);
                 finish();
             }
         });
 
-//         product = new String[1];
-//         product[0]="aa";
-          products = new ArrayList<>();
-
         UserId = auth.getCurrentUser().getUid();
-        DocumentReference documentReference = fstore.collection("Categories").document("dairy").collection(UserId).document("milk can");
-        documentReference.addSnapshotListener(Dairy.this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
-                 x = documentSnapshot.getString("Product Name");
-//                 if(docref!=null)
-    
-//                     x=docref.toString();
+        Query query = fstore.collection("Categories").document("dairy").collection(UserId);
+        FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
+                setQuery(query,ProductModel.class)
+                .build();
 
-//                 product[0]=x;
-                Toast.makeText(Dairy.this, x, Toast.LENGTH_SHORT).show();
-                if(x!=null)
-                {
-                    products.add(x);
-                }
-            }
-        });
-//        if(x!=null)
-//        {
-//            products.add(x);
-//        }
+        adapter = new FirestoreAdapter(options,this);
 
-        products.add("Milk Can");
+        if(product_list!=null)
+        {
+            product_list.setHasFixedSize(true);
+            product_list.setLayoutManager(new LinearLayoutManager(this));
+            product_list.setAdapter(adapter);
+        }
 
-         dairylist = findViewById(R.id.list);
+    }
 
-        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,products);
-        dairylist.setAdapter(arrayAdapter);
+    @Override
+    public void onItemClick(ProductModel a, int position) {
+        Log.d("ITEM_CLICK","Clicked an item "+position + " " + a.getProduct());
+        Toast.makeText(this, "Item Clicked", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(Dairy.this,userHome.class));
+        finish();
+    }
 
-        dairylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Dairy.this, "Milk", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),userHome.class));
-                finish();
-            }
-        });
+    public class ProductViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView list_name;
+
+
+        public ProductViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            list_name = itemView.findViewById(R.id.product);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 }

@@ -92,7 +92,7 @@ public class Upload extends AppCompatActivity {
                 DocumentReference documentReference = fstore.collection("Categories").document(msg).collection(UserId).document(txt_product);
                 Map<String, Object> dairy = new HashMap<>();
 //                    beverage.put("Product Number", txt_product_number);
-                dairy.put("Product Name", txt_product);
+                dairy.put("Product", txt_product);
                 dairy.put("Price", txt_price);
                 dairy.put("Quantity", txt_quantity);
                 dairy.put("Description", txt_description);
@@ -138,7 +138,7 @@ public class Upload extends AppCompatActivity {
                 DocumentReference documentReference = fstore.collection("Categories").document(bakery_msg).collection(UserId).document(txt_product);
                 if (documentReference!=null){
                     Map<String,Object> bakery = new HashMap<>();
-                    bakery.put("Product Name", txt_product);
+                    bakery.put("Product", txt_product);
                     bakery.put("Price", txt_price);
                     bakery.put("Quantity", txt_quantity);
                     bakery.put("Description", txt_description);
@@ -157,7 +157,7 @@ public class Upload extends AppCompatActivity {
                 DocumentReference documentReference = fstore.collection("Categories").document(fv_msg).collection(UserId).document(txt_product);
                 if(documentReference!=null){
                     Map<String,Object> fruits_veg = new HashMap<>();
-                    fruits_veg.put("Product Name", txt_product);
+                    fruits_veg.put("Product", txt_product);
                     fruits_veg.put("Price", txt_price);
                     fruits_veg.put("Quantity", txt_quantity);
                     fruits_veg.put("Description", txt_description);
@@ -176,7 +176,7 @@ public class Upload extends AppCompatActivity {
                 DocumentReference documentReference = fstore.collection("Categories").document(cleaners_msg).collection(UserId).document(txt_product);
                 if(documentReference!=null){
                     Map<String,Object> cleaners = new HashMap<>();
-                    cleaners.put("Product Name",txt_product);
+                    cleaners.put("Product",txt_product);
                     cleaners.put("Price",txt_price);
                     cleaners.put("Quantity",txt_quantity);
                     cleaners.put("Description",txt_description);
@@ -195,7 +195,7 @@ public class Upload extends AppCompatActivity {
                 DocumentReference documentReference = fstore.collection("Categories").document(dry_msg).collection(UserId).document(txt_product);
                 if(documentReference!=null){
                     Map<String,Object> dry = new HashMap<>();
-                    dry.put("Product Name",txt_product);
+                    dry.put("Product",txt_product);
                     dry.put("Price",txt_price);
                     dry.put("Quantity",txt_quantity);
                     dry.put("Description",txt_description);

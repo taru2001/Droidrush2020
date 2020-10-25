@@ -42,7 +42,7 @@ public class Profile extends AppCompatActivity {
 
         UserId = auth.getCurrentUser().getUid();
 //        phone.setText("dfdd");
-        DocumentReference documentReference = fstore.collection("Users").document("UserId");
+        DocumentReference documentReference = fstore.collection("Users").document(UserId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {

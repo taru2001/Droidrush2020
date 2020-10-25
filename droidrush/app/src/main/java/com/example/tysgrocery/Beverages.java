@@ -7,22 +7,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class Beverages extends AppCompatActivity {
+public class Beverages extends AppCompatActivity implements FirestoreAdapter.OnListItemClick {
 
     public static final String MSG = "com.example.tysgrocery.BEVERAGES";
 
@@ -31,8 +27,8 @@ public class Beverages extends AppCompatActivity {
     FirebaseAuth auth;
     RecyclerView products;
     String UserId;
-    FirestoreRecyclerAdapter adapter;
-//    RecyclerView flist;
+//    FirestoreRecyclerAdapter adapter;
+    FirestoreAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +49,24 @@ public class Beverages extends AppCompatActivity {
                 setQuery(query,ProductModel.class)
                 .build();
 
-        adapter = new FirestoreRecyclerAdapter<ProductModel, ProductViewHolder>(options) {
-            @NonNull
-            @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_product,parent,false);
-                return new ProductViewHolder(view);
-            }
+//        adapter = new FirestoreRecyclerAdapter<ProductModel, ProductViewHolder>(options) {
+//            @NonNull
+//            @Override
+//            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_product,parent,false);
+//                return new ProductViewHolder(view);
+//            }
+//
+//            @Override
+//            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull ProductModel model) {
+//                holder.list_name.setText(model.getProduct());
+//
+//            }
+//        };
 
-            @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull ProductModel model) {
-                holder.list_name.setText(model.getProduct());
+        adapter = new FirestoreAdapter(options,this);
 
-            }
-        };
+
 
 //         flist.setHasFixedSize(true);
         if(products!=null)
@@ -103,15 +103,23 @@ public class Beverages extends AppCompatActivity {
         
     }
 
+    @Override
+    public void onItemClick(ProductModel a, int position) {
+        Log.d("ITEM_CLICK","Clicked an item "+position + " " + a.getProduct());
+        Toast.makeText(this, "Item Clicked", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(Beverages.this,userHome.class));
+        finish();
+    }
+
     public class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView list_name;
+        public TextView list_name;
 
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            list_name = itemView.findViewById(R.id.productlist);
+            list_name = itemView.findViewById(R.id.product);
         }
     }
 

@@ -1,8 +1,10 @@
 package com.example.tysgrocery;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,11 +32,16 @@ public class Upload extends AppCompatActivity {
     Button upload;
     String UserId,msg="aa",message="aa",bakery_msg="aa",txt_product,txt_quantity,txt_price,txt_description;
     String fv_msg="aa",cleaners_msg="aa",dry_msg="aa";
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        actionBar=getActionBar();
+        if (actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         product = findViewById(R.id.products);
         price = findViewById(R.id.price);
@@ -83,6 +90,13 @@ public class Upload extends AppCompatActivity {
 
 
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), userHome.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
+
     public void uploadproduct( ){
 
 

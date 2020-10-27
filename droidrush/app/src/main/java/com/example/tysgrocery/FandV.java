@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,11 +30,16 @@ public class FandV extends AppCompatActivity implements FirestoreAdapter.OnListI
     RecyclerView products;
     String UserId;
     FirestoreAdapter adapter;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fand_v);
+
+        actionBar = getActionBar();
+        if (actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         logout = findViewById(R.id.logout);
         upload = findViewById(R.id.upload);
@@ -77,6 +84,12 @@ public class FandV extends AppCompatActivity implements FirestoreAdapter.OnListI
             products.setAdapter(adapter);
         }
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), userHome.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 
     @Override

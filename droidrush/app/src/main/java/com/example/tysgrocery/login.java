@@ -2,8 +2,10 @@ package com.example.tysgrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,13 +22,17 @@ public class login extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button login;
-
+    ActionBar actionBar;
     private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        actionBar=getActionBar();
+        if (actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -43,6 +49,12 @@ public class login extends AppCompatActivity {
                 loginuser(txt_email,txt_password);
             }
         });
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), userHome.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 
     private void loginuser(String email, String password){

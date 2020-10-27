@@ -2,8 +2,10 @@ package com.example.tysgrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,11 +27,16 @@ public class Profile extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore fstore;
     String UserId;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        actionBar= getActionBar();
+        if (actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         name = findViewById(R.id.name);
         usrname = findViewById(R.id.user_name);
@@ -65,5 +72,11 @@ public class Profile extends AppCompatActivity {
         });
 
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), userHome.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }

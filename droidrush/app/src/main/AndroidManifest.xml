@@ -9,17 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dry"></activity>
-        <activity android:name=".Cleaners" />
-        <activity android:name=".FandV" />
-        <activity android:name=".Bakery" />
-        <activity android:name=".Dairy" />
-        <activity android:name=".Beverages" />
-        <activity android:name=".Upload" />
-        <activity android:name=".Profile" />
-        <activity android:name=".userHome" />
-        <activity android:name=".login" />
-        <activity android:name=".register" />
+
+        <activity android:name=".dry"
+            android:parentActivityName=".userHome"/>
+        <activity android:name=".Cleaners"
+            android:parentActivityName=".userHome"/>
+        <activity android:name=".FandV" android:parentActivityName=".userHome" />
+        <activity android:name=".Bakery" android:parentActivityName=".userHome" />
+        <activity android:name=".Dairy" android:parentActivityName=".userHome" />
+        <activity android:name=".Beverages" android:parentActivityName=".userHome" />
+        <activity android:name=".Upload" android:parentActivityName=".userHome" />
+        <activity android:name=".Profile" android:parentActivityName=".userHome" />
+        <activity android:name=".userHome" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".login" android:parentActivityName=".MainActivity" />
+        <activity android:name=".register" android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

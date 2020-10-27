@@ -3,10 +3,12 @@ package com.example.tysgrocery;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,10 +37,15 @@ public class register extends AppCompatActivity {
     private FirebaseAuth auth;
     FirebaseFirestore fstore;
     String UserId;
+    ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        actionBar = getActionBar();
+        if (actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         name = findViewById(R.id.name);
         user_name = findViewById(R.id.usr_name);
@@ -84,6 +91,12 @@ public class register extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), userHome.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 
     public void registerUser(final String email, final String password, final String name, final String uname, final String phone) {

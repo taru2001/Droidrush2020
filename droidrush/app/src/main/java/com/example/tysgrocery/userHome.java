@@ -2,8 +2,10 @@ package com.example.tysgrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,6 +18,7 @@ public class userHome extends AppCompatActivity {
     private Button logout;
     private Button profile;
     ImageButton bev,dairy,bakery,fruits,cleaners,dry;
+    ActionBar actionBar;
 
 
     @Override
@@ -31,6 +34,10 @@ public class userHome extends AppCompatActivity {
         fruits = findViewById(R.id.fruits);
         cleaners=findViewById(R.id.cleaners);
         dry = findViewById(R.id.dry);
+
+        actionBar = getActionBar();
+        if (actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,5 +115,11 @@ public class userHome extends AppCompatActivity {
 
 
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }

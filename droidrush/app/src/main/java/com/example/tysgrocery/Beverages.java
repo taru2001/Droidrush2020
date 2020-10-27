@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,11 +31,16 @@ public class Beverages extends AppCompatActivity implements FirestoreAdapter.OnL
     String UserId;
 //    FirestoreRecyclerAdapter adapter;
     FirestoreAdapter adapter;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beverages);
+
+        actionBar = getActionBar();
+        if (actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         logout = findViewById(R.id.logout);
         upload = findViewById(R.id.upload);
@@ -101,6 +108,12 @@ public class Beverages extends AppCompatActivity implements FirestoreAdapter.OnL
         });
 
         
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), userHome.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 
     @Override

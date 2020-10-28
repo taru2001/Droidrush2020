@@ -79,6 +79,11 @@ public class register extends AppCompatActivity {
                     Toast.makeText(register.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
                 }
 
+                if (txt_phone.length()!=10)
+                {
+                    Toast.makeText(register.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                }
+
                 if(!txt_password.equals(txt_cpassword))
                 {
                     Toast.makeText(register.this, "Password and Confirm Password are not same", Toast.LENGTH_SHORT).show();
@@ -94,7 +99,7 @@ public class register extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), userHome.class);
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
     }

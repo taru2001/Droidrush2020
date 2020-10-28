@@ -96,7 +96,14 @@ public class Cleaners extends AppCompatActivity implements FirestoreAdapter.OnLi
     public void onItemClick(ProductModel a, int position) {
         Log.d("ITEM_CLICK","Clicked an item "+position + " " + a.getProduct());
         Toast.makeText(this, "Item Clicked", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(Cleaners.this,userHome.class));
+        Intent intent = new Intent(Cleaners.this,Product.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("product",a.getProduct());
+        bundle.putString("price",a.getPrice());
+        bundle.putString("quantity",a.getQuantity());
+        bundle.putString("description",a.getDescription());
+        intent.putExtras(bundle);
+        startActivity(intent);
         finish();
     }
 

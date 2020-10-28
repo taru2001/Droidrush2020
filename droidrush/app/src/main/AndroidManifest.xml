@@ -9,20 +9,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".dry"
-            android:parentActivityName=".userHome"/>
-        <activity android:name=".Cleaners"
-            android:parentActivityName=".userHome"/>
-        <activity android:name=".FandV" android:parentActivityName=".userHome" />
-        <activity android:name=".Bakery" android:parentActivityName=".userHome" />
-        <activity android:name=".Dairy" android:parentActivityName=".userHome" />
-        <activity android:name=".Beverages" android:parentActivityName=".userHome" />
-        <activity android:name=".Upload" android:parentActivityName=".userHome" />
-        <activity android:name=".Profile" android:parentActivityName=".userHome" />
-        <activity android:name=".userHome" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".login" android:parentActivityName=".MainActivity" />
-        <activity android:name=".register" android:parentActivityName=".MainActivity" />
+        <activity android:name=".Product" android:parentActivityName=".userHome"></activity>
+        <activity
+            android:name=".dry"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".Cleaners"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".FandV"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".Bakery"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".Dairy"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".Beverages"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".Upload"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".Profile"
+            android:parentActivityName=".userHome" />
+        <activity
+            android:name=".userHome"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".login"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".register"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

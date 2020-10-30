@@ -71,7 +71,7 @@ public class Dairy extends AppCompatActivity implements FirestoreAdapter.OnListI
 
         UserId = auth.getCurrentUser().getUid();
 
-        Query query = fstore.collection("Categories").document("dairy").collection(UserId);
+        Query query = fstore.collection("Categories").document("dairy").collection("Product");
         FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
                 setQuery(query,ProductModel.class)
                 .build();

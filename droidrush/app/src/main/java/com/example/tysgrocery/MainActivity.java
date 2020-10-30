@@ -25,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
 
         auth = FirebaseAuth.getInstance();
-        UserId = auth.getCurrentUser().getUid();
+        if(auth.getCurrentUser()!=null)
+        {
+            UserId = auth.getCurrentUser().getUid();
+            startActivity(new Intent(MainActivity.this,userHome.class));
+        }
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

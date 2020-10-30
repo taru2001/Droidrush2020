@@ -70,7 +70,7 @@ public class FandV extends AppCompatActivity implements FirestoreAdapter.OnListI
             }
         });
 
-        Query query = fstore.collection("Categories").document("fruits&veg").collection(UserId);
+        Query query = fstore.collection("Categories").document("fruits&veg").collection("Product");
         FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
                 setQuery(query,ProductModel.class)
                 .build();

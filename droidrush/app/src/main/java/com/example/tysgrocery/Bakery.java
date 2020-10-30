@@ -9,9 +9,11 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Bakery extends AppCompatActivity implements FirestoreAdapter.OnListItemClick {
 
@@ -31,6 +36,7 @@ public class Bakery extends AppCompatActivity implements FirestoreAdapter.OnList
     String UserId;
     FirestoreAdapter adapter;
     ActionBar actionBar;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +76,8 @@ public class Bakery extends AppCompatActivity implements FirestoreAdapter.OnList
             }
         });
 
-        Query query = fstore.collection("Categories").document("bakery").collection(UserId);
-        FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
+        Query query = fstore.collection("Categories").document("bakery").collection("Product");
+        final FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
                 setQuery(query,ProductModel.class)
                 .build();
 
@@ -84,6 +90,28 @@ public class Bakery extends AppCompatActivity implements FirestoreAdapter.OnList
             products.setAdapter(adapter);
         }
 
+
+
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item){

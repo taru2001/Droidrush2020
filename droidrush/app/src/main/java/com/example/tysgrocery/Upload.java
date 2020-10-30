@@ -3,6 +3,7 @@ package com.example.tysgrocery;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +31,7 @@ public class Upload extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore fstore;
     Button upload;
-    String UserId,msg="aa",message="aa",bakery_msg="aa",txt_product,txt_quantity,txt_price,txt_description;
+    String UserId,msg="aa",message="aa",bakery_msg="aa",txt_product,txt_quantity,txt_price,txt_description,txt_user;
     String fv_msg="aa",cleaners_msg="aa",dry_msg="aa";
     ActionBar actionBar;
 
@@ -81,8 +82,12 @@ public class Upload extends AppCompatActivity {
                      txt_quantity = quantity.getText().toString();
                      txt_price = price.getText().toString();
                       txt_description = description.getText().toString();
-//
-                    uploadproduct();
+
+                     if (TextUtils.isEmpty(txt_product) || TextUtils.isEmpty(txt_quantity) || TextUtils.isEmpty(txt_price) || TextUtils.isEmpty(txt_description))
+                         Toast.makeText(Upload.this, "Fill Complete Details", Toast.LENGTH_SHORT).show();
+
+                     else
+                     uploadproduct();
 
 
                 }
@@ -103,9 +108,9 @@ public class Upload extends AppCompatActivity {
             if (msg!=null && msg.equals("dairy")) {
                 UserId = auth.getCurrentUser().getUid();
 
-                DocumentReference documentReference = fstore.collection("Categories").document(msg).collection(UserId).document(txt_product);
+                DocumentReference documentReference = fstore.collection("Categories").document(msg).collection("Product").document();
                 Map<String, Object> dairy = new HashMap<>();
-//                    beverage.put("Product Number", txt_product_number);
+                dairy.put("Product Number", UserId);
                 dairy.put("Product", txt_product);
                 dairy.put("Price", txt_price);
                 dairy.put("Quantity", txt_quantity);
@@ -125,13 +130,14 @@ public class Upload extends AppCompatActivity {
 //            }
 
             else if (message!=null && message.equals("beverages")) {
-                DocumentReference documentReference = fstore.collection("Categories").document(message).collection(UserId).document(txt_product);
+//                DocumentReference documentReference = fstore.collection("Categories").document(message).collection(UserId).document(txt_product);
+                DocumentReference documentReference = fstore.collection("Categories").document(message).collection("Product").document();
                 if (documentReference != null) {
                     UserId = auth.getCurrentUser().getUid();
 
 
                     Map<String, Object> beverage = new HashMap<>();
-//                    beverage.put("Product Number", txt_product_number);
+                    beverage.put("User", UserId);
                     beverage.put("Product", txt_product);
                     beverage.put("Price", txt_price);
                     beverage.put("Quantity", txt_quantity);
@@ -149,9 +155,10 @@ public class Upload extends AppCompatActivity {
             }
 
             else if (bakery_msg!=null && bakery_msg.equals("bakery")){
-                DocumentReference documentReference = fstore.collection("Categories").document(bakery_msg).collection(UserId).document(txt_product);
+                DocumentReference documentReference = fstore.collection("Categories").document(bakery_msg).collection("Product").document();
                 if (documentReference!=null){
                     Map<String,Object> bakery = new HashMap<>();
+                    bakery.put("User", UserId);
                     bakery.put("Product", txt_product);
                     bakery.put("Price", txt_price);
                     bakery.put("Quantity", txt_quantity);
@@ -168,9 +175,10 @@ public class Upload extends AppCompatActivity {
             }
 
             else if(fv_msg!=null && fv_msg.equals("fruits&veg")){
-                DocumentReference documentReference = fstore.collection("Categories").document(fv_msg).collection(UserId).document(txt_product);
+                DocumentReference documentReference = fstore.collection("Categories").document(fv_msg).collection("Product").document();
                 if(documentReference!=null){
                     Map<String,Object> fruits_veg = new HashMap<>();
+                    fruits_veg.put("User", UserId);
                     fruits_veg.put("Product", txt_product);
                     fruits_veg.put("Price", txt_price);
                     fruits_veg.put("Quantity", txt_quantity);
@@ -187,9 +195,10 @@ public class Upload extends AppCompatActivity {
             }
 
             else if (cleaners_msg!=null && cleaners_msg.equals("cleaners")){
-                DocumentReference documentReference = fstore.collection("Categories").document(cleaners_msg).collection(UserId).document(txt_product);
+                DocumentReference documentReference = fstore.collection("Categories").document(cleaners_msg).collection("Product").document();
                 if(documentReference!=null){
                     Map<String,Object> cleaners = new HashMap<>();
+                    cleaners.put("User", UserId);
                     cleaners.put("Product",txt_product);
                     cleaners.put("Price",txt_price);
                     cleaners.put("Quantity",txt_quantity);
@@ -206,9 +215,10 @@ public class Upload extends AppCompatActivity {
             }
 
             else if(dry_msg!=null && dry_msg.equals("dry")){
-                DocumentReference documentReference = fstore.collection("Categories").document(dry_msg).collection(UserId).document(txt_product);
+                DocumentReference documentReference = fstore.collection("Categories").document(dry_msg).collection("Product").document();
                 if(documentReference!=null){
                     Map<String,Object> dry = new HashMap<>();
+                    dry.put("User", UserId);
                     dry.put("Product",txt_product);
                     dry.put("Price",txt_price);
                     dry.put("Quantity",txt_quantity);

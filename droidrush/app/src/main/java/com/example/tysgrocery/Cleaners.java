@@ -70,7 +70,7 @@ public class Cleaners extends AppCompatActivity implements FirestoreAdapter.OnLi
             }
         });
 
-        Query query = fstore.collection("Categories").document("cleaners").collection(UserId);
+        Query query = fstore.collection("Categories").document("cleaners").collection("Product");
         FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
                 setQuery(query,ProductModel.class)
                 .build();

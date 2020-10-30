@@ -15,10 +15,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -78,19 +80,21 @@ public class register extends AppCompatActivity {
                 {
                     Toast.makeText(register.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
                 }
+//                if(txt_email.length()==0)
+//                    Toast.makeText(register.this, "Empty Credentials", Toast.LENGTH_SHORT).show();
 
-                if (txt_phone.length()!=10)
+                else if (txt_phone.length()!=10)
                 {
                     Toast.makeText(register.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
 
-                if(!txt_password.equals(txt_cpassword))
+                else if(!txt_password.equals(txt_cpassword))
                 {
                     Toast.makeText(register.this, "Password and Confirm Password are not same", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
-//                    Toast.makeText(register.this, "Wait", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(register.this, "Wait", Toast.LENGTH_SHORT).show();
                     registerUser(txt_email, txt_password, txt_name, txt_uname, txt_phone);
                 }
 
@@ -109,6 +113,28 @@ public class register extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
+
+                    // send verification mail
+
+                    FirebaseUser firebaseUser = auth.getCurrentUser();
+                    firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(register.this, "Verification email has been sent", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Log.d("TAG", "onFaliure: email not sent "+ e.getMessage());
+                        }
+                    });
+
+
+
+
+
 //                    FirebaseDatabase.getInstance().getReference().child("User Details").child("Name").setValue(name);
                     UserId = auth.getCurrentUser().getUid();
                     DocumentReference documentReference = fstore.collection("Users").document(UserId);
@@ -122,6 +148,11 @@ public class register extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d("TAG","on success : user profile is created for"+ UserId);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("TAG","onFaliure "+ e.toString());
                         }
                     });
                     Toast.makeText(register.this, "Registered Successfully", Toast.LENGTH_SHORT).show();

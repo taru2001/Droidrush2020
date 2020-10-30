@@ -38,10 +38,10 @@ public class Product extends AppCompatActivity {
             String price = bundle.getString("price");
             String quantity = bundle.getString("quantity");
             String description = bundle.getString("description");
-            products.setText(product);
-            prices.setText(price);
-            qt.setText(quantity);
-            desc.setText(description);
+            products.setText("Product: " +product);
+            prices.setText("Price: "+price);
+            qt.setText("Quantity: "+quantity);
+            desc.setText("Description: "+description);
         }
 
 

@@ -50,7 +50,7 @@ public class Beverages extends AppCompatActivity implements FirestoreAdapter.OnL
         auth = FirebaseAuth.getInstance();
         UserId = auth.getCurrentUser().getUid();
 
-        Query query = fstore.collection("Categories").document("beverages").collection(UserId);
+        Query query = fstore.collection("Categories").document("beverages").collection("Product");
 //        Query query = fstore.collection("Users");
         FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
                 setQuery(query,ProductModel.class)

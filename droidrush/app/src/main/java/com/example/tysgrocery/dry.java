@@ -71,7 +71,7 @@ public class dry extends AppCompatActivity implements FirestoreAdapter.OnListIte
             }
         });
 
-        Query query = fstore.collection("Categories").document("dry").collection(UserId);
+        Query query = fstore.collection("Categories").document("dry").collection("Product");
         FirestoreRecyclerOptions<ProductModel> options = new FirestoreRecyclerOptions.Builder<ProductModel>().
                 setQuery(query,ProductModel.class)
                 .build();

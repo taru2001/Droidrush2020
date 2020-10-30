@@ -1,6 +1,8 @@
 package com.example.tysgrocery;
 
 import android.app.ActionBar;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.tysgrocery.notify.CHANNEL1;
 
 public class Upload extends AppCompatActivity {
 
@@ -34,11 +40,14 @@ public class Upload extends AppCompatActivity {
     String UserId,msg="aa",message="aa",bakery_msg="aa",txt_product,txt_quantity,txt_price,txt_description,txt_user;
     String fv_msg="aa",cleaners_msg="aa",dry_msg="aa";
     ActionBar actionBar;
+    NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
 
         actionBar=getActionBar();
         if (actionBar!=null)
@@ -122,6 +131,14 @@ public class Upload extends AppCompatActivity {
                     }
                 });
                 Toast.makeText(Upload.this, "Product Uploaded", Toast.LENGTH_SHORT).show();
+                Notification notification = new NotificationCompat.Builder(this,CHANNEL1)
+                        .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                        .setContentTitle("Product Added")
+                        .setContentText(txt_product)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                        .build();
+                notificationManagerCompat.notify(1,notification);
                 startActivity(new Intent(getApplicationContext(), userHome.class));
                 finish();
             }
@@ -149,6 +166,14 @@ public class Upload extends AppCompatActivity {
                         }
                     });
                     Toast.makeText(Upload.this, "Product Uploaded", Toast.LENGTH_SHORT).show();
+                    Notification notification = new NotificationCompat.Builder(this,CHANNEL1)
+                            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                            .setContentTitle("Product Added")
+                            .setContentText(txt_product)
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                            .build();
+                    notificationManagerCompat.notify(1,notification);
                     startActivity(new Intent(getApplicationContext(), userHome.class));
                     finish();
                 }
@@ -171,7 +196,17 @@ public class Upload extends AppCompatActivity {
                             finish();
                         }
                     });
+                    Notification notification = new NotificationCompat.Builder(this,CHANNEL1)
+                            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                            .setContentTitle("Product Added")
+                            .setContentText(txt_product)
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                            .build();
+                    notificationManagerCompat.notify(1,notification);
+
                 }
+
             }
 
             else if(fv_msg!=null && fv_msg.equals("fruits&veg")){
@@ -191,6 +226,14 @@ public class Upload extends AppCompatActivity {
                             finish();
                         }
                     });
+                    Notification notification = new NotificationCompat.Builder(this,CHANNEL1)
+                            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                            .setContentTitle("Product Added")
+                            .setContentText(txt_product)
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                            .build();
+                    notificationManagerCompat.notify(1,notification);
                 }
             }
 
@@ -211,6 +254,14 @@ public class Upload extends AppCompatActivity {
                             finish();
                         }
                     });
+                    Notification notification = new NotificationCompat.Builder(this,CHANNEL1)
+                            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                            .setContentTitle("Product Added")
+                            .setContentText(txt_product)
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                            .build();
+                    notificationManagerCompat.notify(1,notification);
                 }
             }
 
@@ -231,6 +282,14 @@ public class Upload extends AppCompatActivity {
                             finish();
                         }
                     });
+                    Notification notification = new NotificationCompat.Builder(this,CHANNEL1)
+                            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                            .setContentTitle("Product Added")
+                            .setContentText(txt_product)
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                            .build();
+                    notificationManagerCompat.notify(1,notification);
                 }
             }
             else{
